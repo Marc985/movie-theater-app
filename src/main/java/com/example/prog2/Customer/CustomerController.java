@@ -23,7 +23,7 @@ public class CustomerController {
     public ResponseEntity<?> addCustomer(@RequestBody Customer customer){
         try{
             service.addNewCustomer(customer.getCustomerName(),customer.getCustomerLastName(), customer.getEmail());
-            return ResponseEntity.status(HttpStatus.CREATED).body("new customer inserted succefully");
+            return ResponseEntity.status(HttpStatus.CREATED).body(customer);
         }
         catch (IllegalArgumentException e){
             return ResponseEntity.status(HttpStatus.CREATED).body("request error:"+e.getMessage());
