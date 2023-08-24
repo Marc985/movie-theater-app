@@ -32,7 +32,7 @@ public class CinemaController {
         return ResponseEntity.status(HttpStatus.CREATED).body("error:"+e.getMessage());
     }
     catch (Exception e){
-       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("server error");
+       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("server error:500");
     }
     }
 
