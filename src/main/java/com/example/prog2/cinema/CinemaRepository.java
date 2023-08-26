@@ -49,7 +49,7 @@ public class CinemaRepository implements CinemaInterfaceRepository {
 
     @Override
     public void addCinema(String title, String releasedate, String duration) {
-    String insert="insert into cinema values ('"+title+"','"+releasedate+"','"+duration+"')";
+    String insert="insert into cinema values (?,?,?)";
     try (PreparedStatement preparedStatement=connection.prepareStatement(insert)){
         preparedStatement.setString(1,title);
         preparedStatement.setString(2,releasedate);
