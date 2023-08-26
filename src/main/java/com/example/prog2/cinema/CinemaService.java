@@ -23,4 +23,7 @@ public class CinemaService {
         repository.addCinema(title,releaseDate,duration);
 
     }
+    public void deleteOneCinema(int idCinema){
+        repository.deleteCinemaById(idCinema);
+    }
 }

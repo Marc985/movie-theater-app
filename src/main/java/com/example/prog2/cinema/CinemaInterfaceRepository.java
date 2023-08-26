@@ -6,5 +6,6 @@ public interface CinemaInterfaceRepository {
     public List<Cinema> getCinemaById(int idCinema);
     public List<Cinema> getAllCinema();
     public void addCinema(String title,String releaseDate,String duration);
+    public  void deleteCinemaById(int idCinema);
 
 }

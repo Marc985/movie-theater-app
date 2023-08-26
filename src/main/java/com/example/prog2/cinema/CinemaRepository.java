@@ -3,11 +3,12 @@ package com.example.prog2.cinema;
 import com.example.prog2.Customer.Customer;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 @Repository
 public class CinemaRepository implements CinemaInterfaceRepository {
     private Connection connection;
@@ -48,17 +49,22 @@ public class CinemaRepository implements CinemaInterfaceRepository {
     }
 
     @Override
-    public void addCinema(String title, String releasedate, String duration) {
-    String insert="insert into cinema values (?,?,?)";
-    try (PreparedStatement preparedStatement=connection.prepareStatement(insert)){
-        preparedStatement.setString(1,title);
-        preparedStatement.setString(2,releasedate);
-        preparedStatement.setString(3,duration);
+    public void addCinema(String title, String releaseDate, String duration) {
+
     }
-    catch (Exception e){
-        e.printStackTrace();
+
+    @Override
+    public void deleteCinemaById(int idCinema) {
+        String sql="delete from cinema where id_cinema=?";
+        try(PreparedStatement preparedStatement= connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1,idCinema);
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
-    }
+
 
     public void convertList(List<Cinema> cinemas,ResultSet resultSet) throws Exception{
 

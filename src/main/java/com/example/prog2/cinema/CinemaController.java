@@ -36,4 +36,10 @@ public class CinemaController {
     }
     }
 
+    @DeleteMapping("/cinema/{idCinema}")
+    public String deleteCinemaByid(@PathVariable int idCinema){
+       service.deleteOneCinema(idCinema);
+       return "deleted succefully";
+    }
+
 }
