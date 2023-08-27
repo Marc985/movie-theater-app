@@ -22,8 +22,7 @@ public class CinemaController {
     public List<Cinema> findAllCinema(){
         return service.getAll();
     }
-   @GetMapping("/cinemaByDate/{date}")
-    public  List<Cinema> findCinemaByProjecitonDate(@PathVariable String date){
+      public  List<Cinema> findCinemaByProjecitonDate(@PathVariable String date){
         return service.getByProjectDate(date);
     }
     @PostMapping("/cinema")

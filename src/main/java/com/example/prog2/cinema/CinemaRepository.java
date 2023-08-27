@@ -48,11 +48,12 @@ public class CinemaRepository implements CinemaInterfaceRepository {
     }
 
     @Override
-    public List<Cinema> findCinemaByProjectionDate(String date) {
+    public List<Cinema> findCinemaByProjectionDate(String projectionDate) {
         String sql="select * from cinema inner join project on cinema.id_cinema=project.id_cinema where project_date=?";
         List<Cinema> cinema=new ArrayList<>();
+        Date date=Date.valueOf(projectionDate);
         try (PreparedStatement statement=connection.prepareStatement(sql)){
-            statement.setString(1,date);
+            statement.setDate(1,date);
             ResultSet result=statement.executeQuery();
             while (result.next()){
                 convertList(cinema,result);
@@ -66,7 +67,19 @@ public class CinemaRepository implements CinemaInterfaceRepository {
 
     @Override
     public void addCinema(String title, String releaseDate, String duration) {
+        String insert="insert into cinema (title,release_date,duration) values (?,?,?)";
+        Date date=Date.valueOf(releaseDate);
+        Time time=Time.valueOf(duration);
 
+        try (PreparedStatement preparedStatement= connection.prepareStatement(insert)){
+            preparedStatement.setString(1,title);
+            preparedStatement.setDate(2,date);
+            preparedStatement.setTime(3,time);
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
