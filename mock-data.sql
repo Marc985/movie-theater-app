@@ -20,7 +20,7 @@ VALUES
   ('Room Q', 49),
   ('Room R', 63),
   ('Room S', 27),
-  ('Room T', 59);
+  ('Room T', 59)
 
 -- Insérer des données fictives dans la table 'cinema'
 INSERT INTO cinema (title, release_date, duration)

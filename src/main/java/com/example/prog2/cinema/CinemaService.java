@@ -15,6 +15,9 @@ public class CinemaService {
     public List<Cinema> getAll(){
         return repository.getAllCinema();
     }
+    public  List<Cinema> getByProjectDate(String date){
+        return repository.findCinemaByProjectionDate(date);
+    }
     public  void AddNewCinema(String title,String releaseDate,String duration){
         if(title==null||title.trim().isEmpty())
             throw new IllegalArgumentException("the title shouldn't be null");

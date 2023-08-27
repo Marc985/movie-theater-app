@@ -19,6 +19,8 @@ public class CustomerController {
     public  List<Customer> allCustomer(){
         return service.getAll();
     }
+
+
     @PostMapping("/customers")
     public ResponseEntity<?> addCustomer(@RequestBody Customer customer){
         try{
@@ -31,5 +33,19 @@ public class CustomerController {
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("there is an error on the server");
         }
+    }
+    @PutMapping("/customers/{idCustomer}")
+    public ResponseEntity<?>updateCustomerById(@PathVariable int idCustomer,@RequestBody Customer customer){
+       try{
+            service.updateCustomer(idCustomer,customer.getCustomerName(), customer.getCustomerLastName());
+            return ResponseEntity.status(HttpStatus.CREATED).body(customer);
+        }
+        catch (IllegalArgumentException e){
+            return ResponseEntity.status(HttpStatus.CREATED).body(e.getMessage());
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error 500");
+        }
+
     }
 }

@@ -8,6 +8,6 @@ public interface CustomerInterfaceRepository {
 
     void insertCustomer(String firstName, String lastName, String email) throws Exception;
 
-    public void updateCustomer();
 
+    void updateCustomer(int idCustomer, String firstName,String lastName);
 }

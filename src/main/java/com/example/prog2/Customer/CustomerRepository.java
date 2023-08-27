@@ -62,10 +62,24 @@ try (PreparedStatement statement=connection.prepareStatement(insert)){
 
     }
 
-    @Override
-    public void updateCustomer() {
 
+
+    @Override
+    public void updateCustomer(int idCustomer, String firstName, String lastName) {
+        String sql="update customer set customer_first_name=?,customer_last_name=? where id_customer=?";
+
+        try(PreparedStatement preparedStatement= connection.prepareStatement(sql)){
+            preparedStatement.setString(1,firstName);
+            preparedStatement.setString(2,lastName);
+            preparedStatement.setInt(3,idCustomer);
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
+
     public void ConvertToList(List<Customer> customers,ResultSet resultSet) throws Exception{
         customers.add(
                 new Customer(

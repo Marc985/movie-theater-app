@@ -1,11 +1,8 @@
 package com.example.prog2.cinema;
 
-import com.example.prog2.Customer.Customer;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +14,11 @@ public class CinemaRepository implements CinemaInterfaceRepository {
     }
     @Override
     public List<Cinema> getCinemaById(int idCinema) {
-        String sql="select * from cinema where id_cinema="+idCinema;
+        String sql="select * from cinema where id_cinema=?";
+
         List<Cinema> cinema=new ArrayList<>();
         try (PreparedStatement statement=connection.prepareStatement(sql)){
+            statement.setInt(1,idCinema);
             ResultSet result=statement.executeQuery();
             while (result.next()){
                 convertList(cinema,result);
@@ -37,6 +36,23 @@ public class CinemaRepository implements CinemaInterfaceRepository {
         String sql="select * from cinema";
         List<Cinema> cinema=new ArrayList<>();
         try (PreparedStatement statement=connection.prepareStatement(sql)){
+            ResultSet result=statement.executeQuery();
+            while (result.next()){
+                convertList(cinema,result);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return cinema;
+    }
+
+    @Override
+    public List<Cinema> findCinemaByProjectionDate(String date) {
+        String sql="select * from cinema inner join project on cinema.id_cinema=project.id_cinema where project_date=?";
+        List<Cinema> cinema=new ArrayList<>();
+        try (PreparedStatement statement=connection.prepareStatement(sql)){
+            statement.setString(1,date);
             ResultSet result=statement.executeQuery();
             while (result.next()){
                 convertList(cinema,result);
