@@ -16,4 +16,7 @@ public class reservationService {
     public  List<CustomerReservation> ReservationByCustomerId(int idCustomer){
         return repository.getReservationByIdCustomer(idCustomer);
     }
+    public void newReservation(String reservationDate,int idSeat,int idCustomer){
+        repository.addNewReservation(reservationDate,idSeat,idCustomer);
+    }
 }

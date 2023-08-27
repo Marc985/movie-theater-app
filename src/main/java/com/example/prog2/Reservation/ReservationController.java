@@ -1,8 +1,6 @@
 package com.example.prog2.Reservation;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
@@ -19,5 +17,10 @@ public class ReservationController {
     @GetMapping("/customersReservation/{idCustomer}")
     public List<CustomerReservation> findCustomerReservationById(@PathVariable int idCustomer){
         return service.ReservationByCustomerId(idCustomer);
+    }
+    @PostMapping("/reservation")
+    public String addNewReservation(@RequestBody Reservation reservation){
+        service.newReservation(reservation.getReservationDate(),reservation.getIdSeat(), reservation.getIdCustomer());
+        return "reservation added succefully";
     }
 }

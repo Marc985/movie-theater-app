@@ -6,10 +6,10 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class CustomerReservation {
-    String firstName;
-    String lastName;
-    String email;
-    String reservationDate;
-    int seatNumber;
-    String roomName;
+   private String firstName;
+   private String lastName;
+   private String email;
+   private String reservationDate;
+   private int seatNumber;
+   private String roomName;
 }

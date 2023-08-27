@@ -1,9 +1,11 @@
 package com.example.prog2.Reservation;
 
 import com.example.prog2.Customer.Customer;
+import lombok.Data;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -51,6 +53,21 @@ public class ReservationRepository implements ReservationInterfaceRepository {
             e.printStackTrace();
         }
         return customer;
+    }
+
+    @Override
+    public void addNewReservation(String reservationDate, int idSeat, int idCustomer) {
+        String insert="insert into reservation (reservation_date,id_seat,id_customer) values (?,?,?)";
+        Date date=Date.valueOf(reservationDate);
+        try(PreparedStatement preparedStatement=connection.prepareStatement(insert)){
+            preparedStatement.setDate(1,date);
+            preparedStatement.setInt(2,idSeat);
+            preparedStatement.setInt(3,idCustomer);
+            preparedStatement.executeUpdate();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void ConvertToList(List<CustomerReservation> customers, ResultSet resultSet) throws Exception{
