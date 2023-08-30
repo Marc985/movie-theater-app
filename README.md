@@ -23,4 +23,12 @@ list of customers,list of cinema projection and information about the cinema
 ### Clone the repository:
 ```
   git clone https://github.com/Marc985/movie-theater-app.git
+
+```
+
+### Run the application
+after running the application  we can access the documentation API at the link below:
+
+```
+  http://localhost:8080/swagger-ui/index.html
 ```
