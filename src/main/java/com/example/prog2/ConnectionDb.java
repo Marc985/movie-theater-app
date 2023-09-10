@@ -14,7 +14,7 @@ public class ConnectionDb {
     @Value("postgres")
     private String username;
 
-    private String password=System.getenv("db_password");
+    private String password="postgres";
     @Bean
     public Connection getConnection() throws SQLException {
         return  DriverManager.getConnection(
