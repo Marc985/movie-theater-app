@@ -1,7 +1,7 @@
 create database cinema_room;
 \c cinema_room
 --one room can project many cinema but not on the same time--
---one room have many seat
+--one room have many seats
 create table room(
     id_room serial primary key,
     room_name varchar(50),
